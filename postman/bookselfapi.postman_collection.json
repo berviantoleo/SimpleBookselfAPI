@@ -661,7 +661,7 @@
 							"    pm.expect(responseJson).to.haveOwnProperty('message');\r",
 							"\r",
 							"    pm.expect(responseJson.status).to.equals('fail');\r",
-							"    pm.expect(responseJson.message).to.equals('Gagal memperbarui catatan. Id tidak ditemukan');\r",
+							"    pm.expect(responseJson.message).to.equals('Gagal memperbarui buku. Id tidak ditemukan');\r",
 							"});"
 						],
 						"type": "text/javascript"
