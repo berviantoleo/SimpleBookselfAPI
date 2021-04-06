@@ -76,7 +76,9 @@ const getAllBooksHandler = (request, h) => {
     const filterResponse = {
       status: 'success',
       data: {
-        books: filteredBooks,
+        books: filteredBooks.map((book) => {
+          return { id: book.id, name: book.name, publisher: book.publisher }
+        }),
       },
     };
     return h.response(filterResponse);
@@ -88,7 +90,9 @@ const getAllBooksHandler = (request, h) => {
     const filterResponse = {
       status: 'success',
       data: {
-        books: filteredBooks,
+        books: filteredBooks.map((book) => {
+          return { id: book.id, name: book.name, publisher: book.publisher }
+        }),
       },
     };
     return h.response(filterResponse);
@@ -98,7 +102,9 @@ const getAllBooksHandler = (request, h) => {
     const filterResponse = {
       status: 'success',
       data: {
-        books: filteredBooks,
+        books: filteredBooks.map((book) => {
+          return { id: book.id, name: book.name, publisher: book.publisher }
+        }),
       },
     };
     return h.response(filterResponse);
@@ -106,7 +112,9 @@ const getAllBooksHandler = (request, h) => {
   const basedResponse = {
     status: 'success',
     data: {
-      books,
+      books: books.map((book) => {
+        return { id: book.id, name: book.name, publisher: book.publisher }
+      }),
     },
   };
   return h.response(basedResponse);
