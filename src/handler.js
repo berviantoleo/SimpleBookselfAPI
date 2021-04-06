@@ -2,7 +2,7 @@ const { nanoid } = require('nanoid');
 const books = require('./books');
 
 /**
- * Add Book Handler
+ * Add Book Handler <br>
  * Handle POST /books
  * @param {*} request Request object
  * @param {*} h hapi object
@@ -75,11 +75,11 @@ const addBookHandler = (request, h) => {
 };
 
 /**
- * Handler for GET /books
- * Handler for GET /books?reading=0
- * Handler for GET /books?reading=1
- * Handler for GET /books?finished=0
- * Handler for GET /books?finished=1
+ * Handler for GET /books <br>
+ * Handler for GET /books?reading=0 <br>
+ * Handler for GET /books?reading=1 <br>
+ * Handler for GET /books?finished=0 <br>
+ * Handler for GET /books?finished=1 <br>
  * Handler for GET /books?name=Dicoding
  * @param {*} request Request object
  * @param {*} h hapi object
@@ -139,7 +139,7 @@ const getAllBooksHandler = (request, h) => {
 };
 
 /**
- * Get by id handler
+ * Get by id handler <br>
  * GET /books/{id}
  * @param {*} request Request object
  * @param {*} h hapi object
