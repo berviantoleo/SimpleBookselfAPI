@@ -1,0 +1,23 @@
+name: Endpoint
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Build & Run
+      run: |
+        docker build . t bookapi
+        docker run --name bookapi bookapi
+    - uses: matt-ball/newman-action@v0.2.4
+      with:
+        collection: postman/bookselfapi.postman_collection.json
+        environment: postman/bookselfapi.postman_environment.json
+    - name: Docker Stop
+      run: |
+        docker stop bookapi
+        docker rm bookapi
