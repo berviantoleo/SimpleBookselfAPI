@@ -12,7 +12,7 @@ jobs:
     - name: Docker Build & Run
       run: |
         docker build . -t bookapi
-        docker run --name bookapi bookapi
+        docker run --name bookapi -d bookapi
     - uses: matt-ball/newman-action@v0.2.4
       with:
         collection: postman/bookselfapi.postman_collection.json
