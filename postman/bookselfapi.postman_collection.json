@@ -178,7 +178,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"year\": {{newYear}},\r\n    \"author\": \"{{newAuthor}}\",\r\n    \"summary\": \"{{newSummary}}\",\r\n    \"publisher\": \"{{newPublisher}}\",\r\n    \"pageCount\": 80,\r\n    \"readPage\": 90,\r\n    \"reading\": {{newReading}}\r\n}",
+					"raw": "{\r\n    \"name\": \"{{newName}}\",\r\n    \"year\": {{newYear}},\r\n    \"author\": \"{{newAuthor}}\",\r\n    \"summary\": \"{{newSummary}}\",\r\n    \"publisher\": \"{{newPublisher}}\",\r\n    \"pageCount\": 80,\r\n    \"readPage\": 90,\r\n    \"reading\": {{newReading}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
