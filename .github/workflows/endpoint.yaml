@@ -21,3 +21,16 @@ jobs:
       run: |
         docker stop bookapi
         docker rm bookapi
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install dependencies
+      run: npm install
+    - name: Build Docs
+      run: npm run docs
+    - name: Deploy Docs 🚀
+      if: ${{ github.event_name == 'push' }}
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: docs # The folder the action should deploy.

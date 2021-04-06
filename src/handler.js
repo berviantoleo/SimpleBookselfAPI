@@ -1,6 +1,13 @@
 const { nanoid } = require('nanoid');
 const books = require('./books');
 
+/**
+ * Add Book Handler
+ * Handle POST /books
+ * @param {*} request Request object
+ * @param {*} h hapi object
+ * @returns Hapi response
+ */
 const addBookHandler = (request, h) => {
   const {
     name, year, author, summary, publisher, pageCount, readPage, reading,
@@ -67,6 +74,17 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
+/**
+ * Handler for GET /books
+ * Handler for GET /books?reading=0
+ * Handler for GET /books?reading=1
+ * Handler for GET /books?finished=0
+ * Handler for GET /books?finished=1
+ * Handler for GET /books?name=Dicoding
+ * @param {*} request Request object
+ * @param {*} h hapi object
+ * @returns Hapi response
+ */
 const getAllBooksHandler = (request, h) => {
   const { reading, finished, name } = request.query;
   if (reading !== undefined) {
@@ -120,6 +138,13 @@ const getAllBooksHandler = (request, h) => {
   return h.response(basedResponse);
 };
 
+/**
+ * Get by id handler
+ * GET /books/{id}
+ * @param {*} request Request object
+ * @param {*} h hapi object
+ * @returns Hapi response
+ */
 const getBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
@@ -141,6 +166,12 @@ const getBookByIdHandler = (request, h) => {
   return response;
 };
 
+/**
+ * Handle PUT /books/{id}
+ * @param {*} request Request object
+ * @param {*} h hapi object
+ * @returns Hapi response
+ */
 const editBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
@@ -199,6 +230,12 @@ const editBookByIdHandler = (request, h) => {
   return response;
 };
 
+/**
+ * Handle DELETE /books/{id}
+ * @param {*} request Request object
+ * @param {*} h hapi object
+ * @returns Hapi response
+ */
 const deleteBookByIdHandler = (request, h) => {
   const { id } = request.params;
 
