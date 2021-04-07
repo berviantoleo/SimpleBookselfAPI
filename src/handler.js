@@ -116,7 +116,7 @@ const getAllBooksHandler = (request, h) => {
     return h.response(filterResponse);
   }
   if (name !== undefined) {
-    const filteredBooks = books.filter((book) => book.name.includes(name));
+    const filteredBooks = books.filter((book) => book.name.toLowerCase().includes(name.toLowerCase()));
     const filterResponse = {
       status: 'success',
       data: {
