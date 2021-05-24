@@ -1,0 +1,8 @@
+.eslintrc.json
+.git/
+coverage/
+node_modules/
+postman/
+.github/
+test/
+.whitesource
