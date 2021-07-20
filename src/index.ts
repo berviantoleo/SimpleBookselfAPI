@@ -1,4 +1,4 @@
-const server = require('./server');
+import server from './server';
 
 const init = async () => {
   await server.start();

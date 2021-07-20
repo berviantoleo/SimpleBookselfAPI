@@ -1,12 +1,14 @@
-const {
+import Hapi from '@hapi/hapi';
+
+import {
   addBookHandler,
   getAllBooksHandler,
   getBookByIdHandler,
   editBookByIdHandler,
   deleteBookByIdHandler,
-} = require('./handler');
+} from './handler';
 
-const routes = [
+const routes : Hapi.ServerRoute[] = [
   {
     method: 'POST',
     path: '/books',
@@ -34,4 +36,4 @@ const routes = [
   },
 ];
 
-module.exports = routes;
+export default routes;

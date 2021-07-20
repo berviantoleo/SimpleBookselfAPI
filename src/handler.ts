@@ -1,17 +1,21 @@
-const { nanoid } = require('nanoid');
-const books = require('./books');
+import { nanoid } from 'nanoid';
+import { Request, ResponseToolkit } from '@hapi/hapi';
+import books from './books';
+import { RequestBook } from './models/RequestBook';
+import { Book } from './models/Book';
+import { mapBook } from './utils/mapper';
 
 /**
  * Add Book Handler <br>
  * Handle POST /books
- * @param {*} request Request object
- * @param {*} h hapi object
+ * @param {Request} request Request object
+ * @param {ResponseToolkit} h hapi object
  * @returns Hapi response
  */
-const addBookHandler = (request, h) => {
+const addBookHandler = (request: Request, h: ResponseToolkit) => {
   const {
     name, year, author, summary, publisher, pageCount, readPage, reading,
-  } = request.payload;
+  } = (request.payload as RequestBook);
 
   // validation
   if (name === undefined) {
@@ -36,7 +40,7 @@ const addBookHandler = (request, h) => {
   const updatedAt = insertedAt;
   const finished = pageCount === readPage;
 
-  const newBook = {
+  const newBook : Book = {
     id,
     name,
     year,
@@ -81,11 +85,11 @@ const addBookHandler = (request, h) => {
  * Handler for GET /books?finished=0 <br>
  * Handler for GET /books?finished=1 <br>
  * Handler for GET /books?name=Dicoding
- * @param {*} request Request object
- * @param {*} h hapi object
+ * @param {Request} request Request object
+ * @param {ResponseToolkit} h hapi object
  * @returns Hapi response
  */
-const getAllBooksHandler = (request, h) => {
+const getAllBooksHandler = (request: Request, h: ResponseToolkit) => {
   const { reading, finished, name } = request.query;
   if (reading !== undefined) {
     const readInt = parseInt(reading, 10);
@@ -94,9 +98,7 @@ const getAllBooksHandler = (request, h) => {
     const filterResponse = {
       status: 'success',
       data: {
-        books: filteredBooks.map((book) => {
-          return { id: book.id, name: book.name, publisher: book.publisher }
-        }),
+        books: filteredBooks.map(mapBook),
       },
     };
     return h.response(filterResponse);
@@ -108,9 +110,7 @@ const getAllBooksHandler = (request, h) => {
     const filterResponse = {
       status: 'success',
       data: {
-        books: filteredBooks.map((book) => {
-          return { id: book.id, name: book.name, publisher: book.publisher }
-        }),
+        books: filteredBooks.map(mapBook),
       },
     };
     return h.response(filterResponse);
@@ -120,9 +120,7 @@ const getAllBooksHandler = (request, h) => {
     const filterResponse = {
       status: 'success',
       data: {
-        books: filteredBooks.map((book) => {
-          return { id: book.id, name: book.name, publisher: book.publisher }
-        }),
+        books: filteredBooks.map(mapBook),
       },
     };
     return h.response(filterResponse);
@@ -130,9 +128,7 @@ const getAllBooksHandler = (request, h) => {
   const basedResponse = {
     status: 'success',
     data: {
-      books: books.map((book) => {
-        return { id: book.id, name: book.name, publisher: book.publisher }
-      }),
+      books: books.map(mapBook),
     },
   };
   return h.response(basedResponse);
@@ -141,11 +137,11 @@ const getAllBooksHandler = (request, h) => {
 /**
  * Get by id handler <br>
  * GET /books/{id}
- * @param {*} request Request object
- * @param {*} h hapi object
+ * @param {Request} request Request object
+ * @param {ResponseToolkit} h hapi object
  * @returns Hapi response
  */
-const getBookByIdHandler = (request, h) => {
+const getBookByIdHandler = (request: Request, h: ResponseToolkit) => {
   const { id } = request.params;
 
   const book = books.filter((n) => n.id === id)[0];
@@ -168,16 +164,15 @@ const getBookByIdHandler = (request, h) => {
 
 /**
  * Handle PUT /books/{id}
- * @param {*} request Request object
- * @param {*} h hapi object
+ * @param {Request} request Request object
+ * @param {ResponseToolkit} h hapi object
  * @returns Hapi response
  */
-const editBookByIdHandler = (request, h) => {
+const editBookByIdHandler = (request: Request, h: ResponseToolkit) => {
   const { id } = request.params;
-
   const {
     name, year, author, summary, publisher, pageCount, readPage, reading,
-  } = request.payload;
+  } = (request.payload as RequestBook);
   // validation
   if (name === undefined) {
     const response = h.response({
@@ -232,11 +227,11 @@ const editBookByIdHandler = (request, h) => {
 
 /**
  * Handle DELETE /books/{id}
- * @param {*} request Request object
- * @param {*} h hapi object
+ * @param {Request} request Request object
+ * @param {ResponseToolkit} h hapi object
  * @returns Hapi response
  */
-const deleteBookByIdHandler = (request, h) => {
+const deleteBookByIdHandler = (request: Request, h: ResponseToolkit) => {
   const { id } = request.params;
 
   const index = books.findIndex((book) => book.id === id);
@@ -259,7 +254,7 @@ const deleteBookByIdHandler = (request, h) => {
   return response;
 };
 
-module.exports = {
+export {
   addBookHandler,
   getAllBooksHandler,
   getBookByIdHandler,

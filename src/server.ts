@@ -1,8 +1,8 @@
-const Hapi = require('@hapi/hapi');
-const routes = require('./routes');
+import Hapi from '@hapi/hapi';
+import routes from './routes';
 
 const server = Hapi.server({
-  port: 5000,
+  port: process.env.PORT || 5000,
   host: process.env.hostname || 'localhost',
   routes: {
     cors: {
@@ -13,4 +13,4 @@ const server = Hapi.server({
 
 server.route(routes);
 
-module.exports = server;
+export default server;
