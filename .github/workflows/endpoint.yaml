@@ -5,19 +5,46 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [14.x, 16.x]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: ${{ matrix.node }}
     - name: Install dependencies
-      run: npm install
+      run: yarn --frozen-lockfile
     - name: Run Test
-      run: npm test
+      run: yarn test
     - name: Upload Coverage
+      if: ${{ matrix.node == '14.x' }}
       run: bash <(curl -s https://codecov.io/bash)
+  build-docs:
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' }}
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Build Docs
+        run: yarn docs
+      - name: Deploy Docs 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: docs # The folder the action should deploy.
+  docker-test:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
     - name: Docker Build & Run
       run: |
         docker build . -t bookapi
@@ -30,11 +57,3 @@ jobs:
       run: |
         docker stop bookapi
         docker rm bookapi
-    - name: Build Docs
-      run: npm run docs
-    - name: Deploy Docs 🚀
-      if: ${{ github.event_name == 'push' }}
-      uses: JamesIves/github-pages-deploy-action@4.1.0
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: docs # The folder the action should deploy.
