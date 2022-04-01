@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [14.x, 16.x]
+        node: [16.x, 17.x]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -21,7 +21,7 @@ jobs:
     - name: Run Test
       run: yarn test
     - name: Upload Coverage
-      if: ${{ matrix.node == '14.x' }}
+      if: ${{ matrix.node == '16.x' }}
       run: bash <(curl -s https://codecov.io/bash)
   build-docs:
     runs-on: ubuntu-20.04
