@@ -1156,10 +1156,10 @@
   resolved "https://registry.npmjs.org/@types/mime-db/-/mime-db-1.43.1.tgz#c2a0522453bb9b6e84ee48b7eef765d19bcd519e"
   integrity sha512-kGZJY+R+WnR5Rk+RPHUMERtb2qBRViIHCBdtUrY+NmwuGb8pQdfTqQiCKPrxpdoycl8KWm2DLdkpoSdt479XoQ==
 
-"@types/node@*", "@types/node@^16.3.3":
-  version "16.3.3"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.3.3.tgz#0c30adff37bbbc7a50eb9b58fae2a504d0d88038"
-  integrity sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==
+"@types/node@*", "@types/node@^17.0.26":
+  version "17.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.26.tgz#1bbff9b23ee5a64f87b4f30c0c854b112ee2e635"
+  integrity sha512-z/FG/6DUO7pnze3AE3TBGIjGGKkvCcGcWINe1C7cADY8hKLJPDYpzsNE37uExQ4md5RFtTCvg+M8Mu1Enyeg2A==
 
 "@types/prettier@^2.1.5":
   version "2.3.2"
