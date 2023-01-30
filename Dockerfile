@@ -12,4 +12,5 @@ COPY package.json yarn.lock ./
 RUN yarn --frozen-lockfile --production
 RUN adduser -D bookself && chown -R bookself /app
 USER bookself
+EXPOSE 5000
 CMD ["yarn","start"]
