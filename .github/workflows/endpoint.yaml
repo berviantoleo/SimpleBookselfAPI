@@ -4,13 +4,15 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+env:
+  DEFAULT_OS: "ubuntu-22.04"
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ env.DEFAULT_OS }}
     strategy:
       fail-fast: false
       matrix:
-        node: [16.x, 18.x]
+        node: [18.x, 19.x]
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -20,18 +22,17 @@ jobs:
       run: yarn --frozen-lockfile
     - name: Run Test
       run: yarn test
-    - name: Upload Coverage
-      if: ${{ matrix.node == '16.x' }}
-      run: bash <(curl -s https://codecov.io/bash)
+    - uses: codecov/codecov-action@v3
+      if: ${{ matrix.node == '18.x' }}
   build-docs:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ env.DEFAULT_OS }}
     if: ${{ github.event_name == 'push' }}
     needs: test
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Build Docs
@@ -42,7 +43,7 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: docs # The folder the action should deploy.
   docker-test:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ env.DEFAULT_OS }}
     steps:
     - uses: actions/checkout@v3
     - name: Docker Build & Run
@@ -60,7 +61,7 @@ jobs:
   docker-push:
     # Ensure test job passes before pushing image.
     needs: docker-test
-    runs-on: ubuntu-20.04
+    runs-on: ${{ env.DEFAULT_OS }}
     if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v3
