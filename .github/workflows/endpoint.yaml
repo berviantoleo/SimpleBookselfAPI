@@ -48,7 +48,7 @@ jobs:
       run: |
         docker build . -t bookapi
         docker run -e hostname=0.0.0.0 --name bookapi -p 5000:5000 -d bookapi
-    - uses: matt-ball/newman-action@v1.0.4
+    - uses: matt-ball/newman-action@v2.0.0
       with:
         collection: postman/bookselfapi.postman_collection.json
         environment: postman/bookselfapi.postman_environment.json
