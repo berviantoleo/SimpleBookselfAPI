@@ -6,5 +6,5 @@ export interface RequestBook {
   publisher: string;
   pageCount: number;
   readPage: number;
-  reading: number;
+  reading: boolean;
 }

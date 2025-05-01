@@ -7,7 +7,7 @@ export interface Book {
   publisher: string;
   pageCount: number;
   readPage: number;
-  reading: number;
+  reading: boolean;
   finished: boolean;
   insertedAt: string;
   updatedAt: string;
