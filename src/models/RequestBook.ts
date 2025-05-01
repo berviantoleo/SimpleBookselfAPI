@@ -1,3 +1,6 @@
+/**
+ * Request Book model
+ */
 export interface RequestBook {
   name: string;
   year: number;
