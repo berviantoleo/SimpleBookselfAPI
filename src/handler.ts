@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import { v7 as uuidv7 } from 'uuid';
 import { Request, ResponseToolkit } from '@hapi/hapi';
 import books from './books';
 import { RequestBook } from './models/RequestBook';
@@ -35,7 +35,7 @@ const addBookHandler = (request: Request, h: ResponseToolkit) => {
     return response;
   }
   // create process
-  const id = nanoid(16);
+  const id = uuidv7();
   const insertedAt = new Date().toISOString();
   const updatedAt = insertedAt;
   const finished = pageCount === readPage;
