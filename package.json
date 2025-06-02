@@ -39,7 +39,7 @@
     "nodemon": "^3.1.10",
     "ts-jest": "^29.3.4",
     "ts-node-dev": "^2.0.0",
-    "typedoc": "^0.28.4",
+    "typedoc": "^0.28.5",
     "typescript": "^5.8.3"
   }
 }
