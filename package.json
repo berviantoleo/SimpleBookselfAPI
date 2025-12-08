@@ -41,7 +41,7 @@
     "globals": "^16.5.0",
     "jest": "^30.2.0",
     "nodemon": "^3.1.11",
-    "ts-jest": "^29.4.5",
+    "ts-jest": "^29.4.6",
     "ts-node-dev": "^2.0.0",
     "typedoc": "^0.28.15",
     "typescript": "^5.9.3"
