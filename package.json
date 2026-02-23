@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/berviantoleo/SimpleBookselfAPI#readme",
   "dependencies": {
-    "@hapi/hapi": "^21.4.4",
+    "@hapi/hapi": "^21.4.6",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
